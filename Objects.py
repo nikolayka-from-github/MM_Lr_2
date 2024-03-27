@@ -6,13 +6,6 @@ class Object:
     random.shuffle(__ID_LIST)
 
     __COUNTER: int = 0
-    """
-    fuel_volume
-    number_of_parking_days
-    current_parking_day
-    position
-    current_position
-    """
 
     def __init__(self, number: int = 1, current: int = 2, fuel: float = 0):
         if self.checking_in_interval(right=50, value=fuel):
@@ -37,6 +30,22 @@ class Object:
     @staticmethod
     def checking_in_interval(right, value, left=0):
         return left <= value <= right
+
+    @property
+    def get_number_of_parking_days(self):
+        return self.number_of_parking_days
+
+    @property
+    def get_current_parking_day(self):
+        return self.current_parking_day
+
+    @property
+    def get_position(self):
+        return self.position
+
+    @property
+    def get_fuel_volume(self):
+        return self.fuel_volume
 
 
 class AerialVehicle(Object):
@@ -110,14 +119,26 @@ class CombatHelicopter(Helicopter):
 
 
 class Bus(GroundVehicle):
-    def __init__(self, number: int = 1, current: int = 2, fuel: float = 0,  refueling_status: float = 0):
+    def __init__(self, number: int = 1, current: int = 2, fuel: float = 0,
+                 number_seats: int = 0, number_passengers: int = 0):
+        super().__init__(number=number, current=current, fuel=fuel)
+        if self.checking_in_interval(right=50, value=number_seats):
+            self.number_seats = number_seats
+        else:
+            raise TypeError
+        if self.checking_in_interval(right=50, value=number_passengers):
+            self.number_passengers = number_passengers
+        else:
+            raise TypeError
+        self.current_position = self.position
+        self.position = random.randint(1, 201)
+
+
+class FuelTanker(GroundVehicle):
+    def __init__(self, number: int = 1, current: int = 2, fuel: float = 0, refueling_status: float = 0):
         super().__init__(number=number, current=current, fuel=fuel)
 
         if self.checking_in_interval(right=1., value=refueling_status):
             self.number_missiles = refueling_status
         else:
             raise TypeError
-
-
-class FuelTanker(GroundVehicle):
-    pass
