@@ -1,1 +1,6 @@
-print("HIIIIIIIIIII")
+import Objects
+
+A = Objects.Helicopter()
+
+
+
