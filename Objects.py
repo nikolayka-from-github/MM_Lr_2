@@ -164,7 +164,7 @@ class FighterJet(Aircraft):
 
         if flag_init:
             self.append_init_file("FighterJet:" + self._obj_init_str +
-                                  f", number_missiles: {number_missiles}")
+                                  f", number_missiles = {number_missiles}")
 
 
 class LightHelicopter(Helicopter):
@@ -202,7 +202,7 @@ class CombatHelicopter(Helicopter):
 
         if flag_init:
             self.append_init_file("CombatHelicopter:" + self._obj_init_str +
-                                  f", number_missiles: {number_missiles}")
+                                  f", number_missiles = {number_missiles}")
 
 
 class Bus(GroundVehicle):
@@ -245,7 +245,7 @@ class FuelTanker(GroundVehicle):
                  number_of_parking_days: int = 2,
                  current_parking_day: int = 1,
                  position: int = None,
-                 refueling_status: int = 0,
+                 refueling_status: float = 0,
                  required_position: int = None,
                  flag_init: bool = False):
         super().__init__(number_of_parking_days=number_of_parking_days,
@@ -266,4 +266,3 @@ class FuelTanker(GroundVehicle):
                                   self._obj_init_str +
                                   f", refueling_status = {self.refueling_status}"
                                   f", required_position = {self.required_position}")
-
