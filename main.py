@@ -78,7 +78,7 @@ def generate_init_file():
 
 AA = AirportDocker.AirportDocker("init.txt")
 print("len: ", len(AA.list_PassengerAircraft))
-for i in AA:
+for i in AA.FighterJetIterator():
     obj = i
     print(obj.get_position)
 
