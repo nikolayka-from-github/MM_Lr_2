@@ -14,6 +14,7 @@ class AirportDocker:
     list_FighterJet = []
     list_FuelTanker = []
     list_Bus = []
+    All_list = []
 
     def __init__(self, init_file: str):
         with open(init_file, "r") as file1:
@@ -98,4 +99,41 @@ class AirportDocker:
                         required_position=int(line_[6][2]),
                         flag_init=False)
                     self.list_Bus.append(obj)
+                self.All_list.append(obj)
                 # print(self.list_PassengerAircraft[0].get_position())
+
+    def PassengerAircraftIterator(self):
+        return iter(self.list_PassengerAircraft)
+
+    def TransportAircraftIterator(self):
+        return iter(self.list_TransportAircraft)
+
+    def LightSingle_engineAircraftIterator(self):
+        return iter(self.list_LightSingle_engineAircraft)
+
+    def LightHelicopterIterator(self):
+        return iter(self.list_LightHelicopter)
+
+    def CombatHelicopterIterator(self):
+        return iter(self.list_CombatHelicopter)
+
+    def FighterJetIterator(self):
+        return iter(self.list_FighterJet)
+
+    def FuelTankerIterator(self):
+        return iter(self.list_FuelTanker)
+
+    def BusIterator(self):
+        return iter(self.list_Bus)
+
+    def __iter__(self):
+        return self
+
+    count = 0
+
+    def __next__(self):
+        if self.count + 1 < 201:
+            self.count += 1
+            return self.All_list[self.count]
+        else:
+            raise StopIteration
